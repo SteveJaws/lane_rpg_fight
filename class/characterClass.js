@@ -1,17 +1,21 @@
 class Character{
-    constructor(pos, color, controlType){
+    constructor(pos, color, controlType, name){
+        this.name = name
         this.pos = pos;
+        this.posX = 0;
+        this.posY = 0;
         this.color = color;
         this.height = 10;
         this.width = 10;
-        this.locked = false
-        this.controlType = controlType
+        this.locked = false;
+        this.controlType = controlType;
+        this.xPosOffset = 0;
         this.pressed = {
             "w": false,
             "s": false,
             "up": false,
             "down": false,
-        }
+        };
     }
 
     draw(ctx, canvas, lanes, fighting = false){
@@ -25,12 +29,15 @@ class Character{
 
         ctx.fillStyle = this.color;
 
-        ctx.fillRect(position.posX, position.posY, this.width, this.height, this.color);
+        ctx.fillRect(position.posX + this.xPosOffset, position.posY, this.width, this.height, this.color);
     }
 
     calcPosition(lane){
         let posY = lane.posY + lane.height / 2 - this.height / 2;
         let posX = 10;
+
+        this.posX = posX;
+        this.posY = posY;
 
         return {"posX": posX, "posY": posY};
     }
@@ -41,7 +48,6 @@ class Character{
 
     switchLane(lanes){
         document.addEventListener("keydown", (event) => {
-            console.log(event);
             switch (event.key){
                 case "w":
                     if(!(this.pressed.w) && this.pos - 1 > 0 && this.controlType == "wasd"){

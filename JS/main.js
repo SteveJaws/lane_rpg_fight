@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 
 let hello = "hellothere";
 
-let characters = makeCharacters()
+let characters = makeCharacters();
 
 function draw(){
     ctx.fillStyle = "black";
@@ -14,7 +14,9 @@ function draw(){
     
     characters.forEach((character) => {
         drawCharacter(ctx, canvas, lanes, character);
-    })
+    });
+
+    hitboxHandler(characters);
 
     requestAnimationFrame(draw);
 }
