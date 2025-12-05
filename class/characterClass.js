@@ -1,15 +1,16 @@
 class Character{
-    constructor(pos, color, controlType, name){
-        this.name = name
+    constructor(pos, color, controlType, name, id, canHaveOffset){
+        this.id = id;
+        this.name = name;
         this.pos = pos;
         this.posX = 0;
         this.posY = 0;
         this.color = color;
         this.height = 10;
         this.width = 10;
-        this.locked = false;
         this.controlType = controlType;
         this.xPosOffset = 0;
+        this.canHaveOffset = canHaveOffset;
         this.pressed = {
             "w": false,
             "s": false,
@@ -86,6 +87,21 @@ class Character{
                     this.pressed.up = false;
                 case "ArrowDown":
                     this.pressed.down = false;
+            }
+        })
+    }
+
+    checkCollision(characters){
+        //check collision with other player
+        characters.forEach((character) => {
+            if(character.id != this.id){
+                let result = hitDetector(this, character);
+                if(result && this.canHaveOffset){
+                    this.xPosOffset = 10;
+                }
+                else{
+                    this.xPosOffset = 0;
+                }
             }
         })
     }

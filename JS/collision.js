@@ -1,5 +1,8 @@
-function hitboxHandler(characters){
-    hitDetector(characters[0], characters[1]);
+function collisionHandler(characters){
+    //characters collision checker
+    characters.forEach((character) => {
+        character.checkCollision(characters);
+    });
 }
 
 function hitDetector(object1, object2){
@@ -9,11 +12,8 @@ function hitDetector(object1, object2){
         object1.posY <= object2.posY + object2.height &&
         object1.posY + object1.height >= object2.posY
     ){
-        console.log(object1.name + " And " + object2.name + " have made collision.");
-        object1.xPosOffset = 10
-    }
-    else{
-        console.log("no collision");
-        object1.xPosOffset = 0
+        return true;
+    }else{
+        return false;
     }
 }

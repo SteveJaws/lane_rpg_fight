@@ -16,7 +16,7 @@ function draw(){
         drawCharacter(ctx, canvas, lanes, character);
     });
 
-    hitboxHandler(characters);
+    collisionHandler(characters);
 
     requestAnimationFrame(draw);
 }

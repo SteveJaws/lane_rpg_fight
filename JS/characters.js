@@ -1,8 +1,10 @@
 function makeCharacters(){
     let lane = 1;
-    character1 = new Character(lane, "white", "wasd", "karakter1");
+    let canHaveOffset = true
+    character1 = new Character(lane, "white", "wasd", "karakter1", generateRandomId(), canHaveOffset);
     lane = 3;
-    character2 = new Character(lane, "yellow", "arrows", "karakter2");
+    canHaveOffset = false;
+    character2 = new Character(lane, "yellow", "arrows", "karakter2", generateRandomId(), canHaveOffset);
 
     return [character1, character2];
 }
