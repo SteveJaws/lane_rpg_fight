@@ -1,13 +1,15 @@
 class Character{
     constructor(pos, color, controlType, name, id, canHaveOffset){
+        let size = convertToPercentCanvas(10, 20);
+
         this.id = id;
         this.name = name;
         this.pos = pos;
         this.posX = 0;
         this.posY = 0;
         this.color = color;
-        this.height = 10;
-        this.width = 10;
+        this.width = size.width;
+        this.height = size.height;
         this.controlType = controlType;
         this.xPosOffset = 0;
         this.canHaveOffset = canHaveOffset;
